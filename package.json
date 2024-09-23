@@ -10,11 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@tabler/icons-react": "^3.17.0",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.4",
     "clsx": "^2.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "framer-motion": "^11.5.6",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-element-to-jsx-string": "^15.0.0",
     "react-i": "^0.2.1",
