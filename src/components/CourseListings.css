@@ -1,0 +1,34 @@
+.mandatory{
+    background-color: #b3cde0;
+    padding-left:16px ;
+    padding-right: 16px;
+    padding-top: 40px ;
+    padding-bottom: 40px;
+    margin-top: auto;
+
+}
+
+.container{
+    margin-top:0;
+}
+
+.heading{
+    color:'#011f4b';
+    font-family: monospace;
+    font-weight: bold;
+    text-align: center;
+    font-size: 35px;
+    padding-bottom: 20px;
+}
+
+.grid{
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px){
+    .grid{
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}

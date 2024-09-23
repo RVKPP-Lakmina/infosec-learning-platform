@@ -1,0 +1,66 @@
+/* flex flex-col lg:flex-row justify-between mb-4*/ 
+
+.card{
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px lightslategrey;
+    padding: 5px;
+}
+
+.padding{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
+
+.margin{
+    margin-bottom: 15px;
+}
+
+.type{
+    color: gray;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.title{
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.state{
+    color: #005b96;
+}
+
+.border{
+    border-width: 1px;
+    border-color: lightslategray;
+    margin-bottom: 20px;
+}
+
+.readMore
+{
+    background-color: #03396c;
+    height: 36px;
+    color: white;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 16px;
+    width:200px;
+    align-items: center;
+    margin-left: 70px;
+
+}    
+
