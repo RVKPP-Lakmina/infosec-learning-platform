@@ -26,7 +26,7 @@ const CourseListItem = ({
     </div>
   );
 
-  const slicedDescription = description?.substring(0, 80) + "...";
+  const slicedDescription = description?.substring(0, 70) + "...";
 
   return (
     <div
@@ -44,6 +44,7 @@ const CourseListItem = ({
           {slicedDescription}
         </div>
       </div>
+
       <div className="flex justify-end items-center">
         <CourseItemDescriptionWrapper>
           <ShowDescriptionBtn courseDetailsItem={courseDetailsItem} />

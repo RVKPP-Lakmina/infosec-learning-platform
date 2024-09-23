@@ -2,9 +2,6 @@ import { NavLink } from "react-router-dom";
 import { UserIcon } from "../../assets/svg-icons";
 
 const Navbar = () => {
-  // const linkClass = ({ isActive }: { isActive: boolean }) =>
-  //   isActive ? "link link-active" : "link";
-
   return (
     <nav className="sticky top-0 bg-[#eafbff] z-10">
       <div className="flex justify-between items-center p-2">
@@ -16,7 +13,6 @@ const Navbar = () => {
                 alt="Logo"
                 width={"34px"}
                 height={"34px"}
-                // className="rounded-xl"
               />
               <div>
                 <div className="font-semibold text-[#0a0391] font-mono">
