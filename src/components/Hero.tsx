@@ -18,7 +18,7 @@ const Hero = ({
         <p className="text-lg text-gray-700 mt-4">{subtitle}</p>
         <button
           onClick={handleNavigate}
-          className="mt-6 px-6 py-2 bg-[#ff6f61] text-white rounded-lg shadow-md hover:bg-[#ffcccb]"
+          className="mt-6 px-6 py-2 bg-[#ff6f61] text-white rounded-lg shadow-md hover:bg-[#fbc7c6] z-10"
         >
           Get Started
         </button>

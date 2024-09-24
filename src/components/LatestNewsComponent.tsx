@@ -1,9 +1,19 @@
 import { DownloadIcon } from "../assets/svg-icons";
+import { downloadNewsArticles } from "../services/services";
 
 const LatestNewsComponent = () => {
+  
+  const printFormTemplate = async (file: string) => {
+    try {
+      await downloadNewsArticles(file);
+    } catch (error: any) {
+      throw error;
+    }
+  };
+
   return (
     <section className="container mx-auto py-10 px-10">
-      <h2 className="text-3xl font-semibold text-[#0a0391] mb-6">
+      <h2 className="text-4xl font-bold text-[#0a0391] text-center mb-10">
         Latest News
       </h2>
       <div className="grid grid-cols-3 gap-6">
@@ -23,7 +33,12 @@ const LatestNewsComponent = () => {
             </p>
           </div>
           <div className="flex justify-end">
-            <button className="font-semibold flex justify-end text-[#0f4c81] items-center gap-2">
+            <button
+              onClick={() => {
+                printFormTemplate("hidden-dangers-of-public-wifi");
+              }}
+              className="font-semibold flex justify-end text-[#0f4c81] items-center gap-2"
+            >
               <DownloadIcon />
               Download the Full Documents
             </button>
@@ -36,7 +51,12 @@ const LatestNewsComponent = () => {
           <div className="flex flex-col gap-4">
             <div className="bg-cover w-96 h-80 min-h-[6rem] rounded-xl bg-[url('src/assets/images/news-article-02.png')]"></div>
           </div>
-          <button className="font-semibold flex justify-end text-[#0f4c81] items-center gap-2">
+          <button
+            onClick={() => {
+              printFormTemplate("hackers-exploit-default-credentials");
+            }}
+            className="font-semibold flex justify-end text-[#0f4c81] items-center gap-2"
+          >
             <DownloadIcon />
             Download the Full Documents
           </button>
@@ -51,12 +71,16 @@ const LatestNewsComponent = () => {
           </div>
 
           <div className="flex justify-end">
-            <button className="font-semibold flex justify-end text-[#0f4c81] items-center gap-2">
+            <button
+              onClick={() => {
+                printFormTemplate("phishing-and-social-engineering");
+              }}
+              className="font-semibold flex justify-end text-[#0f4c81] items-center gap-2"
+            >
               <DownloadIcon />
               Download the Full Documents
             </button>
           </div>
-          
         </article>
       </div>
     </section>

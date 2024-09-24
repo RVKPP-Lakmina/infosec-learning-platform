@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Loader from "./Loader";
+import { get } from "http";
+import { getCompletedCoursList } from "../services/services";
+import { CourseDetailsItem } from "../lib/interfaces";
+import moment from "moment";
 
 interface Course {
   id: number;
@@ -8,39 +13,33 @@ interface Course {
   certificateUrl: string;
 }
 
-const completedCourses: Course[] = [
-  {
-    id: 1,
-    title: "Advanced React",
-    description:
-      "Dive deep into React.js and learn advanced patterns and techniques.",
-    completionDate: "2024-09-01",
-    certificateUrl: "https://www.example.com/certificate/1",
-  },
-  {
-    id: 2,
-    title: "JavaScript ES6+",
-    description: "Master the latest features of JavaScript ES6 and beyond.",
-    completionDate: "2024-08-15",
-    certificateUrl: "https://www.example.com/certificate/2",
-  },
-  {
-    id: 3,
-    title: "Tailwind CSS",
-    description: "Build beautiful, responsive UIs using Tailwind CSS.",
-    completionDate: "2024-07-30",
-    certificateUrl: "https://www.example.com/certificate/3",
-  },
-  {
-    id: 4,
-    title: "Tailwind CSS",
-    description: "Build beautiful, responsive UIs using Tailwind CSS.",
-    completionDate: "2024-07-30",
-    certificateUrl: "https://www.example.com/certificate/3",
-  },
-];
-
 const CompletedCoursesDashboard: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [completedCourses, setCompletedCourses] = useState<CourseDetailsItem[]>(
+    []
+  );
+  const userId = "test-user-id";
+
+  useEffect(() => {
+    getCompletedCourses();
+  }, []);
+
+  const getCompletedCourses = async () => {
+    try {
+      const response: CourseDetailsItem[] = await getCompletedCoursList(userId);
+      setCompletedCourses(response);
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (!completedCourses.length) return <></>;
+
   return (
     <div className="bg-gradient-to-b from-[#eafbff] to-[#f0f4f8] p-8">
       <div className="max-w-7xl mx-auto">
@@ -59,7 +58,9 @@ const CompletedCoursesDashboard: React.FC = () => {
                 <p className="text-sm mb-4">{course.description}</p>
                 <div className="text-sm">
                   <span className="font-semibold">Completed on:</span>{" "}
-                  {course.completionDate}
+                  {moment(course.userStatus.completionDate).format(
+                    "MMM DD, YYYY"
+                  )}
                 </div>
                 <a
                   href={course.certificateUrl}

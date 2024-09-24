@@ -21,10 +21,13 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Roboto", "snas-serif"],
+        sans: ["Roboto", "snas-serif", "Open Sans"],
       },
       gridTemplateColumns: {
         "70/30": "70% 28%",
+      },
+      colors: {
+        customBlue: "rgb(173, 227, 249)",
       },
     },
   },

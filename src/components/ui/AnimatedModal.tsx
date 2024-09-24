@@ -26,8 +26,6 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [open]);
 
-  console.log(courseDetailsItem)
-
   return (
     <ModalContext.Provider
       value={{ open, setOpen, courseDetailsItem, setCourseDetailsItem }}

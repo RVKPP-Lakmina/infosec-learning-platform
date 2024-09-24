@@ -15,7 +15,7 @@ const MantaoryLHS: React.FC<CourseDetailsItems> = ({
         </h1>
       </div>
 
-      <div className=" px-5 gap-3 h-screen overflow-auto sm:px-4 md:px-8 lg:px-16 xl:px-24 py-8">
+      <div className=" px-5 gap-3 h-full overflow-auto sm:px-4 md:px-8 lg:px-16 xl:px-24 py-8">
         <div className="">
           <BentoGrid className="mx-auto mt-5 flex flex-col">
             {mandatoryCourses.map((item: CourseDetailsItem, i) => (

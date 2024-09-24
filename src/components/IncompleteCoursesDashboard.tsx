@@ -7,38 +7,10 @@ import {
   Legend,
   ChartData,
 } from "chart.js";
+import { CourseDetailsItem } from "../lib/interfaces";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-interface Course {
-  id: number;
-  title: string;
-  description: string;
-  completionPercentage: number;
-}
-
-const incompleteCourses: Course[] = [
-  {
-    id: 1,
-    title: "React for Beginners",
-    description:
-      "Learn the basics of React, including components, state, and props.",
-    completionPercentage: 50,
-  },
-  {
-    id: 2,
-    title: "Node.js Fundamentals",
-    description: "Introduction to server-side development using Node.js.",
-    completionPercentage: 70,
-  },
-  {
-    id: 3,
-    title: "Advanced TypeScript",
-    description:
-      "Deep dive into TypeScript for type-safe JavaScript development.",
-    completionPercentage: 30,
-  },
-];
 
 const generateChartData = (
   completionPercentage: number
@@ -56,17 +28,25 @@ const generateChartData = (
   };
 };
 
-const IncompleteCoursesDashboard: React.FC = () => {
+const IncompleteCoursesDashboard = ({
+  courses,
+}: {
+  courses: CourseDetailsItem[];
+}) => {
+  const navigate = useNavigate();
+
+  if (!courses.length) {
+    return <></>;
+  }
+  
   return (
     <div className="bg-gradient-to-r from-[#eafbff] to-[#f0f4f8] p-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-[#0a0391] text-center mb-10">
-          Incomplete Courses
+          Ongoing Courses
         </h1>
-
-        {/* Grid for Incomplete Courses */}
         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {incompleteCourses.map((course) => (
+          {courses.map((course) => (
             <div
               key={course.id}
               className="relative bg-gradient-to-r from-cyan-500 to-teal-400 text-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 ease-in-out"
@@ -78,7 +58,9 @@ const IncompleteCoursesDashboard: React.FC = () => {
                   <h3 className="text-sm font-semibold">Progress</h3>
                   <div className="relative w-32 h-32 mx-auto">
                     <Doughnut
-                      data={generateChartData(course.completionPercentage)}
+                      data={generateChartData(
+                        course.userStatus.prcentageCompleted
+                      )}
                       options={{
                         cutout: "70%",
                         plugins: {
@@ -89,12 +71,17 @@ const IncompleteCoursesDashboard: React.FC = () => {
                       }}
                     />
                     <div className="absolute inset-0 flex items-center justify-center text-xl font-bold">
-                      {course.completionPercentage}%
+                      {course.userStatus.prcentageCompleted}%
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="absolute bottom-4 right-4 bg-white text-teal-600 py-1 px-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+              <div
+                onClick={() => {
+                  navigate(`/courses/${course.id}`);
+                }}
+                className="absolute bottom-4 right-4 bg-white text-teal-600 py-1 px-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+              >
                 Continue Course
               </div>
             </div>

@@ -1,3 +1,4 @@
+import { CourseDetailsItem } from "../../lib/interfaces";
 import {
   Modal,
   ModalBody,
@@ -26,7 +27,13 @@ export function CourseItemDescriptionWrapper({
 }
 
 const CourseItemDescriptionContent = () => {
-  const { courseDetailsItem } = useModal();
+  const {
+    courseDetailsItem,
+  }: { courseDetailsItem: CourseDetailsItem | undefined } = useModal();
+
+  if (!courseDetailsItem) {
+    return <></>;
+  }
 
   return (
     <ModalContent>
@@ -34,26 +41,6 @@ const CourseItemDescriptionContent = () => {
         {courseDetailsItem?.title}
       </h4>
       <div className="flex justify-center items-center">
-        {/* <motion.div
-      key={"images"}
-      style={{
-        rotate: Math.random() * 20 - 10,
-      }}
-      whileHover={{
-        scale: 1.1,
-        rotate: 0,
-        zIndex: 100,
-      }}
-      whileTap={{
-        scale: 1.1,
-        rotate: 0,
-        zIndex: 100,
-      }}
-      className="rounded-xl -mr-4 mt-4 p-1 bg-white flex-shrink-0 overflow-hidden"
-    >
-
-    </motion.div> */}
-
         <div className="flex relative flex-1 w-96 h-80 min-h-[6rem] rounded-xl bg-[url('src/assets/images/cyber-security.jpg')]">
           <div className="bg-gray-100 absolute top-72 right-0 w-16 h-5 flex items-center justify-center rounded-s-md">
             <p className="text-xs">{courseDetailsItem?.time}</p>
@@ -61,23 +48,19 @@ const CourseItemDescriptionContent = () => {
         </div>
       </div>
 
-      <div className="text-[#eafbff] mt-4 gap-5">
+      <div className="text-[#eafbff] mt-5 gap-10 text-lg">
         <div className="flex">
-          <div className="flex flex-1">DURATION: 2 HOURSE AND 15 MINITUES</div>
-          <div className="flex flex-1">CONDUCTED: Jhone Alfred Dore</div>
+          <div className="flex flex-1">DURATION: {courseDetailsItem?.time}</div>
+          <div className="flex flex-1">
+            CONDUCTED: {courseDetailsItem.company.name}
+          </div>
         </div>
-        <div>
-          DESCRIPTION: Explore the birth of groundbreaking ideas and inventions.
+        <div className="mt-5 text-lg">
+          CONTACT INFO: {courseDetailsItem.company.contactPhone} /{" "}
+          {courseDetailsItem.company.contactEmail}
         </div>
-        <div>
-          MODULE TO BE COVERD:{" "}
-          <span>
-            <ul>
-              <li>Test 1</li>
-              <li>Test 2</li>
-              <li>Test 3</li>
-            </ul>
-          </span>
+        <div className="mt-5 text-lg">
+          {courseDetailsItem.company.description}
         </div>
       </div>
     </ModalContent>
