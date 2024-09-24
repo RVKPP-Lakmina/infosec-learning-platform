@@ -24,7 +24,9 @@ export function CourseListings({ courses }: { courses: CourseDetailsItem[] }) {
         </div>
         <div className="flex-1 p-4">
           <OptionalRHS
-            optionalItems={courses.filter((course) => !course.mandatory)}
+            optionalItems={courses.filter(
+              (course) => !course.mandatory && !course.userStatus.startDate
+            )}
           />{" "}
         </div>
       </div>

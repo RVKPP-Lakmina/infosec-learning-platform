@@ -18,15 +18,21 @@ const CourseListItem = ({
   onClick?: () => void;
   courseDetailsItem: CourseDetailsItem;
 }) => {
+  console.log(courseDetailsItem.imageUrl);
   const Skeleton = () => (
-    <div className="flex relative flex-1 w-full h-full min-h-[6rem] rounded-xl bg-[url('src/assets/images/cyber-security.jpg')]">
+    <div
+      className={cn(
+        "flex relative bg-cover flex-1 w-full h-full min-h-[6rem] rounded-xl"
+      )}
+      style={{ backgroundImage: `url(${courseDetailsItem.imageUrl})` }}
+    >
       <div className="bg-gray-100 absolute top-0 right-0 w-16 h-5 flex items-center justify-center rounded-s-md">
         <p className="text-xs">{courseDetailsItem.time}</p>
       </div>
     </div>
   );
 
-  const slicedDescription = description?.substring(0, 70) + "...";
+  const slicedDescription = description?.substring(0, 60) + "...";
 
   return (
     <div
@@ -37,12 +43,8 @@ const CourseListItem = ({
     >
       <Skeleton />
       <div className="group-hover/bento:translate-x-2 transition duration-200">
-        <h1 className="font-sans font-bold text-[#0a0391] mb-2 mt-2">
-          {title}
-        </h1>
-        <div className="font-sans font-normal text-[#0a0391]">
-          {slicedDescription}
-        </div>
+        <h1 className=" font-bold text-[#0a0391] mb-2 mt-2">{title}</h1>
+        <div className=" font-normal text-[#0a0391]">{slicedDescription}</div>
       </div>
 
       <div className="flex justify-end items-center">

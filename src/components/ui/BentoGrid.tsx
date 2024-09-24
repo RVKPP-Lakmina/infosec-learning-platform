@@ -44,12 +44,8 @@ export const BentoGridItem = ({
       {header}
       <div className="group-hover/bento:translate-x-2 transition duration-200">
         {/* {icon} */}
-        <h1 className="font-sans font-bold text-[#0a0391] mb-2 mt-2">
-          {title}
-        </h1>
-        <div className="font-sans font-normal text-[#0a0391]">
-          {description}
-        </div>
+        <h1 className=" font-bold text-[#0a0391] mb-2 mt-2">{title}</h1>
+        <div className=" font-normal text-[#0a0391]">{description}</div>
         <div className="flex justify-end items-center mt-1">
           <Button
             lable={" Show Description"}

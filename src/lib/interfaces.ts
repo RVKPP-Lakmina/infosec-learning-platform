@@ -4,6 +4,7 @@ export interface CourseDetailsItem {
   description: string;
   time?: string;
   mandatory: boolean;
+  imageUrl: string;
   certificateUrl?: string;
   userStatus: {
     completed: boolean;

@@ -1,4 +1,5 @@
 import { CourseDetailsItem } from "../../lib/interfaces";
+import { startNewCourse } from "../../services/services";
 import {
   Modal,
   ModalBody,
@@ -37,18 +38,21 @@ const CourseItemDescriptionContent = () => {
 
   return (
     <ModalContent>
-      <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+      <h4 className="text-lg md:text-2xl text-[#0a0391] font-bold text-center mb-8">
         {courseDetailsItem?.title}
       </h4>
       <div className="flex justify-center items-center">
-        <div className="flex relative flex-1 w-96 h-80 min-h-[6rem] rounded-xl bg-[url('src/assets/images/cyber-security.jpg')]">
+        <div
+          className="flex relative bg-cover flex-1 w-96 h-80 min-h-[6rem] rounded-xl"
+          style={{ backgroundImage: `url(${courseDetailsItem.imageUrl})` }}
+        >
           <div className="bg-gray-100 absolute top-72 right-0 w-16 h-5 flex items-center justify-center rounded-s-md">
             <p className="text-xs">{courseDetailsItem?.time}</p>
           </div>
         </div>
       </div>
 
-      <div className="text-[#eafbff] mt-5 gap-10 text-lg">
+      <div className="text-[#0a0391] mt-5 gap-10 text-lg">
         <div className="flex">
           <div className="flex flex-1">DURATION: {courseDetailsItem?.time}</div>
           <div className="flex flex-1">
@@ -71,8 +75,12 @@ const CourseItemDescriptionFooter = () => {
   const { setOpen, courseDetailsItem } = useModal();
   const navigate = useNavigate();
 
-  const handleStartLearning = () => {
-    navigate(`/courses/${courseDetailsItem?.id}`);
+  const handleStartLearning = async () => {
+    
+    if (courseDetailsItem?.id) {
+      await startNewCourse(courseDetailsItem?.id);
+      navigate(`/courses/${courseDetailsItem?.id}`);
+    }
     setOpen(false);
   };
 

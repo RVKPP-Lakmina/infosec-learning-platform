@@ -7,6 +7,7 @@ const enpoints = {
   getCourseList: `${API_URL}/courses`,
   getCompletedCoursList: `${API_URL}/completed-courses`,
   downloadNewsArticle: `${API_URL}/download-news-article`,
+  startNewCourse: `${API_URL}/start-new-course`,
 };
 
 // --------------------------- GET REQUETS -------------------------------------------------------
@@ -60,3 +61,11 @@ export const downloadNewsArticles = async (fileName: number | string) => {
 };
 
 // --------------------------- POST REQUETS -------------------------------------------------------
+
+export const startNewCourse = async (courseId: string | number) => {
+  try {
+    await axios.post(enpoints.startNewCourse, { courseId });
+  } catch (error) {
+    console.error("Error starting new course:", error);
+  }
+};
