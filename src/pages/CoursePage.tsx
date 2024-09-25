@@ -1,16 +1,7 @@
-import { useParams } from "react-router-dom";
-import courses from "../Courses.json";
-import "./CoursePage.css";
-import { Link } from "react-router-dom";
 import CourseContentPage from "./CourseContent";
 
 const CoursePage = () => {
-  const { id } = useParams();
-  const course = courses.find((c) => c.id === id);
-
   return <CourseContentPage />;
-
-  // return (
   //   <>
   //     <section>
   //       <div className="backSec">

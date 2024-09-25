@@ -9,6 +9,7 @@ const enpoints = {
   downloadNewsArticle: `${API_URL}/download-news-article`,
   startNewCourse: `${API_URL}/start-new-course`,
   getCourseById: `${API_URL}/get-course-by-id`,
+  updateCourseDetails: `${API_URL}/update-course-status`,
 };
 
 // --------------------------- GET REQUETS -------------------------------------------------------
@@ -47,7 +48,7 @@ export const getCourseById = async (courseId: string) => {
     const { data } = await axios.get(enpoints.getCourseById, {
       params: { courseId },
     });
-    response = JSON.parse(data.data);
+    response = data.data;
   } catch (error) {
     console.error("Error fetching course list:", error);
   } finally {
@@ -89,7 +90,7 @@ export const startNewCourse = async (courseId: string | number) => {
 
 export const updateCourseData = async (courseId: string | number, data: any) => {
   try {
-    await axios.put(enpoints.getCourseById, { courseId, data });
+    await axios.post(enpoints.updateCourseDetails, { courseId, data });
   } catch (error) {
     console.error("Error updating course:", error);
   }

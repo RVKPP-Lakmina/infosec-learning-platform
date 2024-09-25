@@ -18,7 +18,6 @@ const CourseListItem = ({
   onClick?: () => void;
   courseDetailsItem: CourseDetailsItem;
 }) => {
-  console.log(courseDetailsItem.imageUrl);
   const Skeleton = () => (
     <div
       className={cn(
