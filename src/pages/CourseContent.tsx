@@ -82,7 +82,7 @@ const CourseContentChild = ({ userCourse }: any) => {
         }
         return newTime;
       });
-    }, 50);
+    }, 1000);
     return () => clearInterval(intervalId);
   }, [totalDuration]);
 
@@ -93,7 +93,7 @@ const CourseContentChild = ({ userCourse }: any) => {
           <h2 className="text-2xl font-semibold mb-4">Course Video</h2>
           <div className=" flex justify-center items-center aspect-video rounded-lg shadow-lg">
             <iframe
-              src={userCourse.courseContent.videoUrl} // Video URL
+              src={userCourse.courseDetails.videoUrl} // Video URL
               width="640"
               height="480"
               allow="autoplay; encrypted-media"
