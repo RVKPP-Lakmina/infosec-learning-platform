@@ -28,6 +28,24 @@ const generateChartData = (
   };
 };
 
+/**
+ * IncompleteCoursesDashboard component displays a list of ongoing courses.
+ * 
+ * @param {Object} props - The component props.
+ * @param {CourseDetailsItem[]} props.courses - An array of course details to be displayed.
+ * 
+ * @returns {JSX.Element} A JSX element representing the dashboard of incomplete courses.
+ * 
+ * This component renders a grid of course cards, each showing the course title, description,
+ * and a progress doughnut chart. If there are no courses, it returns an empty fragment.
+ * 
+ * Each course card includes a "Continue Course" button that navigates to the course's detail page.
+ * The progress doughnut chart is generated using the `generateChartData` function and displays
+ * the percentage of course completion.
+ * 
+ * The component uses Tailwind CSS for styling and includes hover and transition effects for
+ * better user experience.
+ */
 const IncompleteCoursesDashboard = ({
   courses,
 }: {

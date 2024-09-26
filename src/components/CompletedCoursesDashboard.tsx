@@ -13,6 +13,27 @@ interface Course {
   certificateUrl: string;
 }
 
+/**
+ * `CompletedCoursesDashboard` is a React functional component that displays a list of completed courses for a user.
+ * 
+ * The component uses the `useEffect` hook to fetch the list of completed courses when the component is first mounted.
+ * 
+ * @component
+ * @example
+ * return (
+ *   <CompletedCoursesDashboard />
+ * )
+ * 
+ * @remarks
+ * The `useEffect` hook in this component is used to perform a side effect, specifically fetching data from an API.
+ * It runs only once after the initial render, as indicated by the empty dependency array `[]`.
+ * This ensures that the `getCompletedCourses` function is called only once to fetch the data when the component mounts.
+ * 
+ * The `getCompletedCourses` function is an asynchronous function that fetches the list of completed courses for a user.
+ * It updates the state with the fetched data and handles loading state.
+ * 
+ * The component conditionally renders a loader while the data is being fetched and displays the list of completed courses once the data is available.
+ */
 const CompletedCoursesDashboard: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [completedCourses, setCompletedCourses] = useState<CourseDetailsItem[]>(
@@ -24,6 +45,19 @@ const CompletedCoursesDashboard: React.FC = () => {
     getCompletedCourses();
   }, []);
 
+  /**
+   * Fetches the list of completed courses for the current user.
+   * 
+   * This function makes an asynchronous call to retrieve the completed courses
+   * for the user identified by `userId`. Upon successful retrieval, it updates
+   * the state with the list of completed courses. If an error occurs during the
+   * fetch operation, it is caught and handled silently. Regardless of success
+   * or failure, the loading state is set to false once the operation is complete.
+   * 
+   * @async
+   * @function getCompletedCourses
+   * @returns {Promise<void>} A promise that resolves when the operation is complete.
+   */
   const getCompletedCourses = async () => {
     try {
       const response: CourseDetailsItem[] = await getCompletedCoursList(userId);

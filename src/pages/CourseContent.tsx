@@ -87,6 +87,24 @@ const CourseContentChild = ({ userCourse }: any) => {
   }, [progressPercentage]);
 
   useEffect(() => {
+    /**
+     * Sets up an interval to increment the `timeWatched` state every second.
+     * 
+     * The interval runs a callback function every 1000 milliseconds (1 second) that:
+     * - Increments the `timeWatched` state by 1.
+     * - Checks if the new `timeWatched` value is greater than or equal to `totalDuration`.
+     *   - If true, sets the `isCompleted` state to true and clears the interval.
+     *   - If false, continues incrementing the `timeWatched` state.
+     * 
+     * @remarks
+     * This interval is used to track the amount of time a user has watched a course.
+     * When the `timeWatched` reaches the `totalDuration`, the course is marked as completed.
+     * 
+     * @example
+     * // Example usage:
+     * // Assuming `totalDuration` is 300 seconds (5 minutes):
+     * // After 5 minutes, `isCompleted` will be set to true and the interval will stop.
+     */
     const intervalId = setInterval(() => {
       setTimeWatched((prevTime) => {
         const newTime = prevTime + 1;
