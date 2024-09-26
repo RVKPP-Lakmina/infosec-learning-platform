@@ -3,10 +3,13 @@ import { downloadNewsArticles } from "../services/services";
 
 const LatestNewsComponent = () => {
   
+  // Function to handle downloading news articles
   const printFormTemplate = async (file: string) => {
     try {
+      // Attempt to download the news article using the provided file name
       await downloadNewsArticles(file);
     } catch (error: any) {
+      // If an error occurs, throw the error
       throw error;
     }
   };

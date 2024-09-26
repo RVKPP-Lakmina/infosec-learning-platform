@@ -62,8 +62,19 @@ const ShowDescriptionBtn = ({
 }: {
   courseDetailsItem: CourseDetailsItem;
 }) => {
-  const { setOpen, setCourseDetailsItem } = useModal();
+// Destructure the setOpen and setCourseDetailsItem functions from the useModal hook
+// setOpen: Function to control the visibility of a modal (open/close)
+// setCourseDetailsItem: Function to set the details of the course to be displayed in the modal
+const { setOpen, setCourseDetailsItem } = useModal();
 
+  /**
+   * Handles the click event for a course list item.
+   * 
+   * This function sets the course details item and opens the details view.
+   * 
+   * @function hanldeOnClick
+   * @returns {void}
+   */
   const hanldeOnClick = () => {
     setCourseDetailsItem(courseDetailsItem);
     setOpen(true);

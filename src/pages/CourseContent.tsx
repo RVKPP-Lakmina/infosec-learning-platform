@@ -44,6 +44,22 @@ const CourseContentChild = ({ userCourse }: any) => {
   const apiDuration = [10, 25, 50, 75];
   const { id }: any = useParams();
 
+  /**
+   * Handles events related to course progress and updates the course data accordingly.
+   * 
+   * This function performs the following actions:
+   * 1. Checks if the current progress percentage is included in the `apiDuration` array.
+   *    - If true, it prepares a data object with the current progress percentage.
+   * 2. Checks if the progress percentage is 100 (indicating course completion).
+   *    - If true, it prepares a data object with the current progress percentage, 
+   *      the completion date (using `moment()`), and a flag indicating completion.
+   * 3. If a data object is prepared (i.e., progress percentage is in `apiDuration` or is 100),
+   *    it calls the `updateCourseData` function with the course `id` and the prepared data.
+   * 
+   * @async
+   * @function handleEvents
+   * @returns {Promise<void>} A promise that resolves when the course data update is complete.
+   */
   const handleEvents = async () => {
     let data = undefined;
 
@@ -51,7 +67,6 @@ const CourseContentChild = ({ userCourse }: any) => {
       data = {
         prcentageCompleted: progressPercentage,
       };
-      alert("You have completed " + progressPercentage + "% of the course");
     }
 
     if (progressPercentage === 100) {
@@ -82,7 +97,7 @@ const CourseContentChild = ({ userCourse }: any) => {
         }
         return newTime;
       });
-    }, 100);
+    }, 1000);
     return () => clearInterval(intervalId);
   }, [totalDuration]);
 
@@ -92,14 +107,22 @@ const CourseContentChild = ({ userCourse }: any) => {
         <div className="w-1/2">
           <h2 className="text-2xl font-semibold mb-4">Course Video</h2>
           <div className="aspect-video rounded-lg shadow-lg">
-            <iframe
+            {/* <iframe
               id="youtube-player"
               className="w-full h-full"
-              src={userCourse.courseContent.videoUrl}
+              // src={userCourse.courseContent.videoUrl}
+              src={
+                "https://drive.google.com/uc?id=1_QigrAjNs8CuKF6euWLcCWunGsSmiBu3"
+              }
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            ></iframe>
+            ></iframe> */}
+
+            <video
+              src="https://drive.google.com/uc?id=1_QigrAjNs8CuKF6euWLcCWunGsSmiBu3"
+              controls
+            ></video>
           </div>
 
           <div className="mt-4">
