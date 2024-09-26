@@ -44,22 +44,6 @@ const CourseContentChild = ({ userCourse }: any) => {
   const apiDuration = [10, 25, 50, 75];
   const { id }: any = useParams();
 
-  /**
-   * Handles events related to course progress and updates the course data accordingly.
-   * 
-   * This function performs the following actions:
-   * 1. Checks if the current progress percentage is included in the `apiDuration` array.
-   *    - If true, it prepares a data object with the current progress percentage.
-   * 2. Checks if the progress percentage is 100 (indicating course completion).
-   *    - If true, it prepares a data object with the current progress percentage, 
-   *      the completion date (using `moment()`), and a flag indicating completion.
-   * 3. If a data object is prepared (i.e., progress percentage is in `apiDuration` or is 100),
-   *    it calls the `updateCourseData` function with the course `id` and the prepared data.
-   * 
-   * @async
-   * @function handleEvents
-   * @returns {Promise<void>} A promise that resolves when the course data update is complete.
-   */
   const handleEvents = async () => {
     let data = undefined;
 
@@ -67,6 +51,7 @@ const CourseContentChild = ({ userCourse }: any) => {
       data = {
         prcentageCompleted: progressPercentage,
       };
+      alert("You have completed " + progressPercentage + "% of the course");
     }
 
     if (progressPercentage === 100) {
@@ -87,24 +72,6 @@ const CourseContentChild = ({ userCourse }: any) => {
   }, [progressPercentage]);
 
   useEffect(() => {
-    /**
-     * Sets up an interval to increment the `timeWatched` state every second.
-     * 
-     * The interval runs a callback function every 1000 milliseconds (1 second) that:
-     * - Increments the `timeWatched` state by 1.
-     * - Checks if the new `timeWatched` value is greater than or equal to `totalDuration`.
-     *   - If true, sets the `isCompleted` state to true and clears the interval.
-     *   - If false, continues incrementing the `timeWatched` state.
-     * 
-     * @remarks
-     * This interval is used to track the amount of time a user has watched a course.
-     * When the `timeWatched` reaches the `totalDuration`, the course is marked as completed.
-     * 
-     * @example
-     * // Example usage:
-     * // Assuming `totalDuration` is 300 seconds (5 minutes):
-     * // After 5 minutes, `isCompleted` will be set to true and the interval will stop.
-     */
     const intervalId = setInterval(() => {
       setTimeWatched((prevTime) => {
         const newTime = prevTime + 1;
@@ -115,7 +82,7 @@ const CourseContentChild = ({ userCourse }: any) => {
         }
         return newTime;
       });
-    }, 1000);
+    }, 50);
     return () => clearInterval(intervalId);
   }, [totalDuration]);
 
@@ -124,25 +91,16 @@ const CourseContentChild = ({ userCourse }: any) => {
       <div className="flex">
         <div className="w-1/2">
           <h2 className="text-2xl font-semibold mb-4">Course Video</h2>
-          <div className="aspect-video rounded-lg shadow-lg">
-            {/* <iframe
-              id="youtube-player"
-              className="w-full h-full"
-              // src={userCourse.courseContent.videoUrl}
-              src={
-                "https://drive.google.com/uc?id=1_QigrAjNs8CuKF6euWLcCWunGsSmiBu3"
-              }
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          <div className=" flex justify-center items-center aspect-video rounded-lg shadow-lg">
+            <iframe
+              src={userCourse.courseContent.videoUrl} // Video URL
+              width="640"
+              height="480"
+              allow="autoplay; encrypted-media"
               allowFullScreen
-            ></iframe> */}
-
-            <video
-              src="https://drive.google.com/uc?id=1_QigrAjNs8CuKF6euWLcCWunGsSmiBu3"
-              controls
-            ></video>
+              style={{ border: "1px solid #ccc" }}
+            ></iframe>
           </div>
-
           <div className="mt-4">
             <div className="w-full bg-gray-200 rounded-full h-4">
               <div
