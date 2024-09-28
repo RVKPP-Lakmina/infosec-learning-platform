@@ -5,7 +5,7 @@ const LogoutPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <div className=" flex-1 flex flex-col justify-center bg-cover items-center h-screen gap-3">
         <img src="src/assets/logout-page.jpg" />
         <button
@@ -15,7 +15,6 @@ const LogoutPage = () => {
           Back To the Home
         </button>
       </div>
-
       <div className="flex  flex-1 justify-end bg-cover items-center gap-3 ">
         <img
           src="src/assets/infosec-login.png"
