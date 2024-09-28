@@ -4,6 +4,7 @@ import CoursesPage from "../pages/CoursesPage";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import MainLayout from "../layouts/MainLayout";
+import LogoutPage from "../pages/LogoutPage";
 
 // Create a router instance using createBrowserRouter
 export const router = createBrowserRouter([
@@ -30,5 +31,10 @@ export const router = createBrowserRouter([
         element: <NotFoundPage />, // Not found page component
       },
     ],
+  },
+  {
+    path: "/user-profile",
+    element: <LogoutPage />,
+    children: [],
   },
 ]);
